@@ -1,0 +1,8 @@
+{
+  "name": "prestige-beauty",
+  "compatibility_date": "2026-11-24",
+  "assets": {
+    "directory": "./public"
+  },
+  "workers_dev": true
+}
