@@ -37,7 +37,7 @@
     <section class="hero" aria-roledescription="carousel" aria-label="Naše služby">
       <div class="hero__slides">
         <article class="slide is-active" id="slide-headspa" role="tabpanel" aria-labelledby="tab-headspa">
-          <img src="assets/headspa.jpg" alt="Japonské HeadSpa v salonu Prestige" style="object-position: 40% 40%" fetchpriority="high">
+          <img src="assets/headspa.webp" alt="Japonské HeadSpa v salonu Prestige" style="object-position: 40% 40%" fetchpriority="high">
           <div class="slide__shade"></div>
           <div class="wrap slide__body">
             <h1 class="slide__title">Japonské HeadSpa</h1>
@@ -45,8 +45,8 @@
             <a class="btn btn--light" href="#kontakt">Rezervovat HeadSpa</a>
           </div>
         </article>
-        <article class="slide" id="slide-plet" role="tabpanel" aria-labelledby="tab-plet" hidden>
-          <img src="assets/plet.jpg" alt="Ošetření pleti" style="object-position: 50% 40%" loading="lazy">
+        <article class="slide" id="slide-plet" role="tabpanel" aria-labelledby="tab-plet" aria-hidden="true" inert>
+          <img src="assets/plet.webp" alt="Ošetření pleti" style="object-position: 50% 40%" decoding="async">
           <div class="slide__shade"></div>
           <div class="wrap slide__body">
             <h2 class="slide__title">Péče o&nbsp;pleť</h2>
@@ -54,8 +54,8 @@
             <a class="btn btn--light" href="#sluzby">Vybrat ošetření</a>
           </div>
         </article>
-        <article class="slide" id="slide-telo" role="tabpanel" aria-labelledby="tab-telo" hidden>
-          <img src="assets/telo.jpg" alt="Přístroj RenaSculpt na formování postavy" style="object-position: 35% 50%" loading="lazy">
+        <article class="slide" id="slide-telo" role="tabpanel" aria-labelledby="tab-telo" aria-hidden="true" inert>
+          <img src="assets/telo.webp" alt="Přístroj RenaSculpt na formování postavy" style="object-position: 35% 50%" decoding="async">
           <div class="slide__shade"></div>
           <div class="wrap slide__body">
             <h2 class="slide__title">Tělo a&nbsp;regenerace</h2>
@@ -63,8 +63,8 @@
             <a class="btn btn--light" href="#sluzby">Vybrat ošetření</a>
           </div>
         </article>
-        <article class="slide" id="slide-poukazy" role="tabpanel" aria-labelledby="tab-poukazy" hidden>
-          <img src="assets/salon.jpg" alt="Odpočinková zóna salonu" style="object-position: 50% 50%" loading="lazy">
+        <article class="slide" id="slide-poukazy" role="tabpanel" aria-labelledby="tab-poukazy" aria-hidden="true" inert>
+          <img src="assets/salon.webp" alt="Odpočinková zóna salonu" style="object-position: 50% 50%" decoding="async">
           <div class="slide__shade"></div>
           <div class="wrap slide__body">
             <h2 class="slide__title">Dárkové poukazy</h2>
@@ -91,29 +91,27 @@
           </div>
           <aside class="guide" aria-labelledby="guide-title">
             <img class="guide__icon" src="assets/icons/pred-po.png" alt="" width="360" height="237" loading="lazy">
-            <div class="guide__body">
-              <h3 id="guide-title">Nevíte, co vybrat?</h3>
-              <p>Ať hledáte péči pro sebe, nebo dárek pro někoho blízkého, náš průvodce vám během pár otázek doporučí ošetření, které sedne.</p>
-              <!-- TODO: odkaz na stránku průvodce, až bude hotová -->
-              <a class="btn btn--dark" href="#kontakt">Spustit průvodce</a>
-            </div>
+            <h3 id="guide-title">Nevíte, co vybrat?</h3>
+            <p>Pro sebe i&nbsp;jako dárek. Poradíme během pár otázek.</p>
+            <!-- TODO: odkaz na stránku průvodce, až bude hotová -->
+            <a class="btn btn--dark guide__btn" href="#kontakt">Spustit průvodce</a>
           </aside>
         </div>
         <ul class="cats">
           <li><a class="cat" href="#kontakt">
-            <img src="assets/headspa.jpg" alt="" style="object-position: 30% 50%" loading="lazy">
+            <img src="assets/headspa.webp" alt="" style="object-position: 30% 50%" loading="lazy">
             <span class="cat__text"><img class="cat__icon" src="assets/icons/vlasy.png" alt="" width="276" height="360" loading="lazy"><span class="cat__name">HeadSpa</span><span class="cat__price">od&nbsp;1&nbsp;890&nbsp;Kč</span></span>
           </a></li>
           <li><a class="cat" href="#kontakt">
-            <img src="assets/plet.jpg" alt="" loading="lazy">
+            <img src="assets/plet.webp" alt="" loading="lazy">
             <span class="cat__text"><img class="cat__icon" src="assets/icons/plet.png" alt="" width="229" height="360" loading="lazy"><span class="cat__name">Pleť</span><span class="cat__price">od&nbsp;750&nbsp;Kč</span></span>
           </a></li>
           <li><a class="cat" href="#kontakt">
-            <img src="assets/telo.jpg" alt="" style="object-position: 35% 50%" loading="lazy">
+            <img src="assets/telo.webp" alt="" style="object-position: 35% 50%" loading="lazy">
             <span class="cat__text"><img class="cat__icon" src="assets/icons/telo.png" alt="" width="216" height="360" loading="lazy"><span class="cat__name">Tělo</span><span class="cat__price">od&nbsp;600&nbsp;Kč</span></span>
           </a></li>
           <li><a class="cat" href="#kontakt">
-            <img src="assets/detail.jpg" alt="" loading="lazy">
+            <img src="assets/detail.webp" alt="" loading="lazy">
             <span class="cat__text"><img class="cat__icon" src="assets/icons/ruka.png" alt="" width="360" height="325" loading="lazy"><span class="cat__name">Poukazy</span><span class="cat__price">od&nbsp;5&nbsp;000&nbsp;Kč</span></span>
           </a></li>
         </ul>
@@ -145,7 +143,7 @@
     </section>
 
     <section class="about" id="salon" aria-labelledby="salon-title">
-      <img class="about__img" src="assets/recepce.jpg" alt="Recepce salonu Prestige" loading="lazy">
+      <img class="about__img" src="assets/recepce.webp" alt="Recepce salonu Prestige" loading="lazy">
       <div class="about__body" id="kontakt">
         <img class="about__icon" src="assets/icons/prostor.png" alt="" width="212" height="360" loading="lazy">
         <h2 id="salon-title">O&nbsp;salonu</h2>

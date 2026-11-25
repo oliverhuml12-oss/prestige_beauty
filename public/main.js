@@ -23,7 +23,8 @@
       tab.setAttribute('aria-selected', on ? 'true' : 'false');
       tab.tabIndex = on ? 0 : -1;
       panel.classList.toggle('is-active', on);
-      panel.hidden = !on;
+      panel.setAttribute('aria-hidden', on ? 'false' : 'true');
+      panel.inert = !on;
     });
     run(tabs[index]);
     if (focus) tabs[index].focus();
@@ -54,6 +55,14 @@
     hero.addEventListener('mouseleave', resume);
     hero.addEventListener('focusin', pause);
     hero.addEventListener('focusout', resume);
+    // Stop the loop while the hero is off screen or the tab is hidden.
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        hero.classList.toggle('is-offscreen', !entries[0].isIntersecting);
+      }).observe(hero);
+    }
+    // Decode the other slides up front so the cross-fade never waits on an image.
+    hero.querySelectorAll('.slide img').forEach(function (img) { if (img.decode) img.decode().catch(function () {}); });
     run(tabs[0]);
   }
 })();
