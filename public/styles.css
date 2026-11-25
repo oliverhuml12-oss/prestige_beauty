@@ -63,7 +63,20 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--taupe-deep); ou
 .btn:hover { background: var(--taupe); color: var(--ink); }
 
 /* Header */
-.site-header { background: rgba(255,255,255,.96); position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--linen-line); }
+.site-header { background: var(--white); position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--linen-line); }
+/* Scroll spark: a gold star rides the header's bottom edge with the page's scroll position */
+.scroll-spark { --x: 0px; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; pointer-events: none; }
+.scroll-spark__trail {
+  position: absolute; right: calc(100% - var(--x)); bottom: 0; width: 220px; height: 2px;
+  background: linear-gradient(90deg, rgba(201,164,110,0) 0%, rgba(201,164,110,.85) 100%);
+  opacity: 0; transition: opacity .9s ease-out;
+}
+.scroll-spark.is-moving .scroll-spark__trail { opacity: 1; transition: opacity .15s ease-out; }
+.scroll-spark__star {
+  position: absolute; left: 0; top: 50%; fill: #C9A46E;
+  transform: translate3d(calc(var(--x) - 7px), -50%, 0);
+  filter: drop-shadow(0 0 4px rgba(201,164,110,.7));
+}
 .site-header__inner { display: flex; align-items: center; gap: 40px; height: 80px; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .brand img { height: 30px; width: auto; }
@@ -111,9 +124,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--taupe-deep); ou
 
 /* Services */
 .services { background: var(--cream); padding: 88px 0 104px; }
-.services__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 580px); gap: 48px; align-items: stretch; margin-bottom: 44px; }
-.services__head { display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: 12px; }
-.services__head .section-head__icon { height: 36px; }
+.services__spark { display: block; width: auto; height: 36px; margin-bottom: 16px; }
+.services__intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 580px); gap: 48px; align-items: start; margin-bottom: 44px; }
+.services__head { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.services__head h2 { margin-top: -6px !important; }
 .services__head h2 { margin: 0; font-family: var(--serif); font-weight: 300; font-size: 46px; line-height: 1.05; }
 .services__head p { margin: 0; font-size: 17px; color: var(--ink-soft); }
 .guide {
