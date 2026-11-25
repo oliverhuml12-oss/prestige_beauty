@@ -3,6 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+    // iPhone Safari "Úplná verze stránky" only swaps the user agent to a Mac one and keeps the
+    // mobile viewport, so the phone layout stayed. Detect that (Mac UA + touch + phone-sized
+    // screen) and give the page a desktop-width viewport instead.
+    (function () {
+      if (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 0 &&
+          Math.min(screen.width, screen.height) < 600) {
+        document.querySelector('meta[name="viewport"]').setAttribute('content', 'width=1280');
+      }
+    })();
+  </script>
   <title>Prestige Beauty Salon · Kosmetika a HeadSpa na Žižkově</title>
   <meta name="description" content="Kosmetický salon na Žižkově. Japonské HeadSpa, péče o pleť, tělo a regenerace, dárkové poukazy. Husitská 106/1, Praha 3.">
   <meta name="robots" content="noindex">
