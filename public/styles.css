@@ -14,6 +14,8 @@
   --sans: "Manrope", system-ui, sans-serif;
   --wide: "Archivo", sans-serif;
   --ease: cubic-bezier(.16, 1, .3, 1);
+  --gold: #C9A46E;
+  --header-h: 81px; /* 80px bar + 1px border */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -61,6 +63,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--taupe-deep); ou
 .btn--dark { background: var(--ink-soft); color: var(--white); }
 .btn--light { background: var(--white); color: var(--ink); }
 .btn:hover { background: var(--taupe); color: var(--ink); }
+/* Gold catches the top-left corner and settles into the brand brown under the label (white text stays ≥4.5:1). Hover slides it deeper into the brown. */
+.btn--gold {
+  background: linear-gradient(135deg, #E0C285 0%, var(--gold) 14%, #8C6A48 40%, var(--ink-soft) 70%) 0 0 / 140% 100%;
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(46,39,35,.35);
+  box-shadow: inset 0 1px 0 rgba(255,241,230,.28), 0 6px 16px -10px rgba(122,92,71,.7);
+  transition: background-position .5s var(--ease), transform .2s;
+}
+.btn--gold:hover { background: linear-gradient(135deg, #E0C285 0%, var(--gold) 14%, #8C6A48 40%, var(--ink-soft) 70%) 0 0 / 140% 100%; background-position: 100% 0; color: var(--white); }
 
 /* Header */
 .site-header { background: var(--white); position: sticky; top: 0; z-index: 5; border-bottom: 1px solid var(--linen-line); }
@@ -88,7 +99,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--taupe-deep); ou
 .site-header .btn { padding: 13px 24px; }
 
 /* Hero slider */
-.hero { position: relative; height: 680px; overflow: hidden; background: var(--ink); color: var(--white); }
+.hero { position: relative; height: calc(100vh - var(--header-h)); height: calc(100svh - var(--header-h)); min-height: 480px; overflow: hidden; background: var(--ink); color: var(--white); }
 .hero__slides, .slide { position: absolute; inset: 0; }
 .slide { opacity: 0; visibility: hidden; transition: opacity .8s ease, visibility 0s linear .8s; will-change: opacity; }
 .slide.is-active { opacity: 1; visibility: visible; transition: opacity .8s ease, visibility 0s; }
@@ -198,7 +209,7 @@ section[id] { scroll-margin-top: 80px; }
   .wrap { padding: 0 20px; }
   .site-nav { display: none; }
   .site-header__inner { justify-content: space-between; height: 68px; }
-  .hero { height: 600px; }
+  :root { --header-h: 69px; }
   .slide__title { font-size: 40px; }
   .slide__body { bottom: 88px; }
   .hero__tabs { gap: 18px; }
