@@ -161,15 +161,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--taupe-deep); ou
 .guide p { grid-area: text; margin: 0; font-size: 15px; line-height: 1.5; color: var(--ink-soft); }
 .guide__btn { grid-area: btn; justify-self: end; white-space: nowrap; }
 .cats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
-.cat { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; text-decoration: none; }
+.cat { position: relative; display: flex; flex-direction: column; overflow: hidden; text-decoration: none; }
 .cat > img {
-  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 50%, transparent 90%);
-  mask-image: linear-gradient(180deg, #000 0%, #000 50%, transparent 90%);
+  display: block; width: 100%; aspect-ratio: 1 / 1.08; object-fit: cover;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 55%, transparent 100%);
   transition: transform .8s var(--ease);
 }
 .cat:hover > img { transform: scale(1.04); }
-.cat__text { position: absolute; left: 0; right: 0; bottom: 6px; display: grid; grid-template-columns: 52px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 14px; align-items: center; }
+/* Label sits on the plain background below the faded photo, not over it. */
+.cat__text { margin-top: 14px; display: grid; grid-template-columns: 52px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 14px; align-items: center; }
 .cat__icon { grid-row: span 2; width: 52px; height: 52px; object-fit: contain; }
 .cat__name { font-family: var(--serif); font-weight: 300; font-size: 28px; line-height: 1.1; color: var(--ink); }
 .cat__price { font-size: 15px; color: var(--taupe-deep); font-variant-numeric: tabular-nums; }
@@ -226,9 +227,10 @@ section[id] { scroll-margin-top: 80px; }
   .guide__btn { margin-top: 10px; }
   .section-head h2, .about__body h2 { font-size: 36px; }
   .cats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-  .cat__name { font-size: 22px; }
-  .cat__text { grid-template-columns: 40px minmax(0, 1fr); column-gap: 10px; }
-  .cat__icon { width: 40px; height: 40px; }
+  .cat__name { font-size: 21px; }
+  .cat__price { font-size: 14px; }
+  .cat__text { margin-top: 10px; grid-template-columns: 34px minmax(0, 1fr); column-gap: 8px; }
+  .cat__icon { width: 34px; height: 34px; }
   .reviews__wall { column-count: 1; }
   .about { grid-template-columns: minmax(0, 1fr); }
   .about__img { height: 360px; }
