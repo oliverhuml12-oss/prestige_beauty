@@ -66,3 +66,24 @@
     run(tabs[0]);
   }
 })();
+
+// Scroll spark: position follows scroll progress; the trail shows while moving, then fades.
+(function () {
+  var spark = document.querySelector('.scroll-spark');
+  if (!spark) return;
+  var ticking = false, idle;
+  function update() {
+    ticking = false;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    spark.style.setProperty('--x', (p * spark.clientWidth).toFixed(1) + 'px');
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    spark.classList.add('is-moving');
+    clearTimeout(idle);
+    idle = setTimeout(function () { spark.classList.remove('is-moving'); }, 180);
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
