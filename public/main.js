@@ -15,20 +15,32 @@
   var useVideo = videos.length && !reduceMotion && !saveData &&
     window.matchMedia('(max-width: 900px)').matches;
 
-  function load(v) { if (v && !v.src) { v.src = v.getAttribute('data-src'); v.preload = 'auto'; } }
+  var warmTimer;
+  function load(v) { if (v && !v.src) { v.preload = 'auto'; v.src = v.getAttribute('data-src'); } }
   function playVideo(index) {
     if (!useVideo) return;
     videos.forEach(function (v, i) {
       if (i === index) {
         load(v);
-        v.currentTime = 0;
-        var p = v.play(); if (p && p.catch) p.catch(function () {});
+        if (v.currentTime) v.currentTime = 0;
+        if (!hero.classList.contains('is-offscreen')) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
       } else {
         v.pause();
       }
     });
-    load(videos[(index + 1) % videos.length]); // warm up the next clip
+    // Fetch the next clip once this one has had time to start, so they never
+    // compete for bandwidth during the cross-fade.
+    clearTimeout(warmTimer);
+    warmTimer = setTimeout(function () { load(videos[(index + 1) % videos.length]); }, 1500);
   }
+  // Decode nothing while the hero is scrolled away or the tab is hidden.
+  function syncPlayback() {
+    if (!useVideo) return;
+    var v = videos[current];
+    if (hero.classList.contains('is-offscreen') || document.hidden) v.pause();
+    else if (v.src && v.paused) { var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+  document.addEventListener('visibilitychange', syncPlayback);
   if (useVideo) hero.classList.add('has-video');
 
   function run(tab) {
@@ -85,6 +97,7 @@
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(function (entries) {
         hero.classList.toggle('is-offscreen', !entries[0].isIntersecting);
+        syncPlayback();
       }).observe(hero);
     }
     // Decode the other slides up front so the cross-fade never waits on an image.
