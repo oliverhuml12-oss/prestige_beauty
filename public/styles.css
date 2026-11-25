@@ -64,7 +64,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--taupe-deep); ou
 .btn--light { background: var(--white); color: var(--ink); }
 .btn:hover { background: var(--taupe); color: var(--ink); }
 /* Gold fill framed by a thin lighter-gold edge; hover fades to the brand brown inside the same edge.
-   Dark label on gold (≥4.5:1), white on brown. */
+   White label throughout (Oliver's call); a soft shadow helps it read on the gold. */
 .btn--gold {
   position: relative; isolation: isolate;
   border: 1.5px solid transparent;
@@ -72,8 +72,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--taupe-deep); ou
   background:
     linear-gradient(135deg, var(--gold), #9C7748) padding-box,
     linear-gradient(135deg, #E6CA93, #B28B56 50%, #E6CA93) border-box;
-  color: var(--ink);
-  transition: color .3s var(--ease), transform .2s;
+  color: var(--white);
+  text-shadow: 0 1px 2px rgba(46,39,35,.3);
+  transition: transform .2s;
 }
 .btn--gold::before {
   content: ""; position: absolute; inset: 0; z-index: -1; border-radius: 2.5px;
