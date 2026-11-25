@@ -8,6 +8,29 @@
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var current = 0;
 
+  // Phones only: swap the hero photos for short muted clips. Each clip loads
+  // just before it is needed, and only the visible one plays.
+  var videos = Array.prototype.slice.call(hero.querySelectorAll('.slide__video'));
+  var saveData = navigator.connection && navigator.connection.saveData;
+  var useVideo = videos.length && !reduceMotion && !saveData &&
+    window.matchMedia('(max-width: 900px)').matches;
+
+  function load(v) { if (v && !v.src) { v.src = v.getAttribute('data-src'); v.preload = 'auto'; } }
+  function playVideo(index) {
+    if (!useVideo) return;
+    videos.forEach(function (v, i) {
+      if (i === index) {
+        load(v);
+        v.currentTime = 0;
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+      } else {
+        v.pause();
+      }
+    });
+    load(videos[(index + 1) % videos.length]); // warm up the next clip
+  }
+  if (useVideo) hero.classList.add('has-video');
+
   function run(tab) {
     tabs.forEach(function (t) { t.classList.remove('is-running'); });
     if (reduceMotion) return;
@@ -27,6 +50,7 @@
       panel.inert = !on;
     });
     run(tabs[index]);
+    playVideo(index);
     if (focus) tabs[index].focus();
   }
 
@@ -45,6 +69,8 @@
       if (i === current) select((current + 1) % tabs.length, false);
     });
   });
+
+  playVideo(0);
 
   if (!reduceMotion) {
     hero.classList.add('is-auto');
